@@ -5,16 +5,19 @@ import common.UtilService;
 import common.UtilServiceImpl;
 import enums.Messenger;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 
+    UserRepository repository;
     private static UserServiceImpl instance = new UserServiceImpl();
     Map<String, User> users;
 
     private UserServiceImpl() {
         this.users = new HashMap<>();
+        this.repository = UserRepository.getInstance();
     }
 
     public static UserServiceImpl getInstance() {
@@ -149,5 +152,21 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     @Override
     public Map<String, ?> getUserMap() {
         return users;
+    }
+
+    @Override
+    public String test() {
+        return repository.test();
+    }
+
+    @Override
+    public User findUser(String userName) {
+        //return repository.findUser();
+        return null;
+    }
+
+    @Override
+    public List<User> findUsers() throws SQLException {
+        return repository.  findUsers();
     }
 }

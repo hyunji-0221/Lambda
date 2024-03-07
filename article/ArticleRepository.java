@@ -1,48 +1,44 @@
-package user;
+package article;
 
 import java.sql.*;
 import java.util.List;
 
-public class UserRepository {
+public class ArticleRepository {
 
-    private static UserRepository instance;
+    Connection connection;
+
+    private static ArticleRepository instance;
 
     static {
         try {
-            instance = new UserRepository();
+            instance = new ArticleRepository();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    Connection connection;
-    private UserRepository() throws SQLException {
+    private ArticleRepository() throws SQLException {
         this.connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/adadb"
                 , "root"
                 , "rootroot");
     }
 
-    public static UserRepository getInstance() {
+    public static ArticleRepository getInstance() {
         return instance;
     }
 
-    public String test() {
-        return "UserRepository 연결";
-    }
-
-
-    public List<User> findUsers() throws SQLException {
-        String sql = "SELECT * FROM board";
+    public List<Article> getList() throws SQLException {
+        String sql = "select * from articles";
         PreparedStatement pstmt = connection.prepareStatement(sql);
-        ResultSet rs =  pstmt.executeQuery();
+        ResultSet rs = pstmt.executeQuery();
         if (rs.next()){
-            do{
+            do {
                 System.out.printf("ID : %d\t Title : %s\t Content : %s\t Writer : %s\n",
-                        rs.getInt("id"),
-                        rs.getString("title"),
-                        rs.getString("content"),
-                        rs.getString("writer"));
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getString("content"),
+                rs.getString("writer"));
             }
             while (rs.next());
         }else{

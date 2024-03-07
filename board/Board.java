@@ -10,15 +10,15 @@ public class Board {
 
     private int id;
 
-    private String title;
-    private String content;
+    private String boardName;
+    private String boardType;
     private String writer;
 
 @Builder(builderMethodName = "builder")
-    public Board(int id, String title, String content, String writer) {
+    public Board(int id, String boardName, String boardType, String writer) {
         this.id = id;
-        this.title = title;
-        this.content = content;
+        this.boardName = boardName;
+        this.boardType = boardType;
         this.writer = writer;
     }
 }

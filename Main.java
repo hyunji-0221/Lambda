@@ -6,12 +6,13 @@ import crawler.CrawlerView;
 import user.UserView;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
         Scanner scan = new Scanner(System.in);
 
         while(true){
@@ -31,7 +32,7 @@ public class Main {
                     break;
                 case "3" :
                     System.out.println("게시판");
-                    BoardView.main();
+                    BoardView.main(scan);
                     break;
                 case "4" :
                     System.out.println("계좌관리");
