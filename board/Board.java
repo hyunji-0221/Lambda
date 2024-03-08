@@ -8,17 +8,15 @@ import lombok.*;
 
 public class Board {
 
-    private int id;
+    private Long id;
 
     private String boardName;
     private String boardType;
-    private String writer;
 
 @Builder(builderMethodName = "builder")
-    public Board(int id, String boardName, String boardType, String writer) {
+    public Board(Long id, String boardName, String boardType) {
         this.id = id;
         this.boardName = boardName;
         this.boardType = boardType;
-        this.writer = writer;
     }
 }

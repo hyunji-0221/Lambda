@@ -67,30 +67,14 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
         return users.containsKey(id);
     }
 
+
+
+
     @Override
-    public String addUsers() {
-        Map<String, User> map = new HashMap<>();
-        UtilService util = UtilServiceImpl.getInstance();
-        for (int i = 0; i < 5; i++) {
-            String userName = util.createRandomUserName();
-            map.put(userName, User.builder()
-                    .userName(userName)
-                    .password("")
-                    .passwordCheck("")
-                    .name(util.createRandomName())
-                    .job(Integer.toString(util.createRandomInteger(10, 5)))
-                    .build());
-        }
-        users = map;
-        return users.size() + "개 더미값 추가";
-    }
-
-
-    public List<?> findUserByName(String name){
-        return users.values()
-                .stream()
-                .filter(i->i.getName().equals(name))
-                .collect(Collectors.toList());
+    public String login(User user) {
+        return users.getOrDefault(user.getUserName(), User.builder().password("").build())
+                .getPassword()
+                .equals(user.getPassword()) ? "로그인 성공" : "로그인 실패";
     }
 
     public Map<String, ?>   findUserByNameFromMap(String name){
@@ -116,13 +100,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-
-    @Override
-    public String login(User user) {
-        return users.getOrDefault(user.getUserName(), User.builder().password("").build())
-                .getPassword()
-                .equals(user.getPassword()) ? "로그인 성공" : "로그인 실패";
-    }
 
     @Override
     public String changePassword(User user) {
@@ -167,6 +144,29 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 
     @Override
     public List<User> findUsers() throws SQLException {
-        return repository.  findUsers();
+        return repository.findUsers();
+    }
+
+    @Override
+    public void createTable() throws SQLException {
+        repository.createTable();
+    }
+
+    @Override
+    public void deleteTable() throws SQLException {
+        repository.deleteTable();
+    }
+
+
+    public List<?> findUserByName(String name){
+        return users.values()
+                .stream()
+                .filter(i->i.getName().equals(name))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String addUsers() {
+        return null;
     }
 }

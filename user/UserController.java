@@ -21,10 +21,12 @@ public class UserController {
     public String save(Scanner scanner) {
         service.save(User.builder()
                 .userName(scanner.next())
-                .rrn(scanner.next())
-                .address(scanner.next())
-                .pNum(scanner.next())
                 .password(scanner.next())
+                .name(scanner.next())
+                .pNum(scanner.next())
+                .job(scanner.next())
+                .height(scanner.nextDouble())
+                .weight(scanner.nextDouble())
                 .build());
         return "회원가입 성공";
     }
@@ -47,8 +49,6 @@ public class UserController {
     public String changePassword(Scanner scanner) {
         return service.changePassword(User.builder()
                 .userName(scanner.next())
-                .rrn(scanner.next())
-                .address(scanner.next())
                 .pNum(scanner.next())
                 .password(scanner.next())
                 .build());
@@ -84,15 +84,13 @@ public class UserController {
     public Optional<User> getOne(Scanner scanner) {
         return service.getOne(scanner.next());
     }
-    public Map<String, ?> getUserMap(){
+
+    public Map<String, ?> getUserMap() {
         return service.getUserMap();
     }
 
     public String count() {
         return service.count();
-    }
-    public String test() {
-        return service.test();
     }
 
     public User findUser(Scanner scan) {
@@ -102,5 +100,13 @@ public class UserController {
 
     public List<User> findUsers() throws SQLException {
         return service.findUsers();
+    }
+
+    public void createTable() throws SQLException {
+        service.createTable();
+    }
+
+    public void deleteTable() throws SQLException {
+        service.deleteTable();
     }
 }

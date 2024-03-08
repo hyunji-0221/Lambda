@@ -1,5 +1,6 @@
 
 import account.AccountView;
+import article.ArticleView;
 import board.BoardView;
 import crawler.CrawlerService;
 import crawler.CrawlerView;
@@ -16,27 +17,31 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         while(true){
-            System.out.println("0-종료 1-Crawler 2-사용자관리(맵) 3-게시판 4-계좌관리");
+            System.out.println("x-종료 c-Crawler u-UserView b-Board m-AccountView a-ArticleView");
 
             switch (scan.next()){
-                case "0" :
+                case "x" :
                     System.out.println("종료되었습니다.");
                     return;
-                case "1" :
+                case "c" :
                     System.out.println("Crawler");
                     CrawlerView.main(scan);
                     break;
-                case "2" :
-                    System.out.println("사용자관리(맵)");
+                case "u" :
+                    System.out.println("UserView");
                     UserView.main(scan);
                     break;
-                case "3" :
-                    System.out.println("게시판");
+                case "b" :
+                    System.out.println("Board");
                     BoardView.main(scan);
                     break;
-                case "4" :
-                    System.out.println("계좌관리");
+                case "m" :
+                    System.out.println("AccountView");
                     AccountView.main(scan);
+                    break;
+                case "a" :
+                    System.out.println("ArticleView");
+                    ArticleView.main(scan);
                     break;
                 default:
                     System.out.println("잘못된 입력입니다.");

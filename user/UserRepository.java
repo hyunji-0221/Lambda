@@ -54,4 +54,31 @@ public class UserRepository {
 
         return null;
     }
+
+    public void createTable() throws SQLException {
+        String sql = "CREATE TABLE members(" +
+                                "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
+                                "username VARCHAR(20) NOT NULL,\n" +
+                                "password VARCHAR(20) NOT NULL,\n" +
+                                "name VARCHAR(20),\n" +
+                                "phone VARCHAR(20),\n" +
+                                "job VARCHAR(20),\n" +
+                                "height VARCHAR(20),\n" +
+                                "weight VARCHAR(20))";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.executeUpdate();
+
+        pstmt.close();
+        connection.close();
+
+    }
+
+    public void deleteTable() throws SQLException {
+        String sql = "delete table users";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.executeUpdate();
+
+        pstmt.close();
+        connection.close();
+    }
 }

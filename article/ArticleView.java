@@ -17,7 +17,7 @@ public class ArticleView {
                     return;
                 case "1":
                     System.out.println("======= 글 목록 =======");
-                    List<Article> list = ctrl.getList();
+                    ctrl.findAll().forEach(i-> System.out.println(i));
                     break;
                 default:
                     System.out.println("잘못된 입력입니다.");

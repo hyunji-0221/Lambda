@@ -26,4 +26,8 @@ public interface UserService {
     User findUser(String userName);
 
     List<User> findUsers() throws SQLException;
+
+    void createTable() throws SQLException;
+
+    void deleteTable() throws SQLException;
 }

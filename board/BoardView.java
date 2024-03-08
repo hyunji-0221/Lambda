@@ -39,10 +39,6 @@ public class BoardView {
                 case "0" :
                     System.out.println("종료되었습니다.");
                     return;
-                case "1" :
-                    System.out.println("Article");
-                    ArticleView.main(scan);
-                    break;
                 default:
                     System.out.println("잘못된 입력입니다.");
                     break;

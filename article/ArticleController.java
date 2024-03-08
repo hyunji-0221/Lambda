@@ -10,7 +10,8 @@ public class ArticleController {
         this.service = ArticleServiceImpl.getInstance();
     }
 
-    public List<Article> getList() throws SQLException {
-        return service.getList();
+
+    public List<Article> findAll() throws SQLException {
+        return service.findAll();
     }
 }

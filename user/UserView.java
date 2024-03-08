@@ -18,16 +18,20 @@ public class UserView {
                     "3-ID검색\n" +
                     "4-비번변경\n" +
                     "5-회원탈퇴\n" +
-                    "6-회원목록\n" +
+                    "ls-회원목록\n" +
                     "7-이름검색\n" +
                     "8-직업검색\n" +
-                    "9-회원수");
+                    "9-회원수\n" +
+                    "touch - 테이블생성\n" +
+                    "rm - 테이블삭제\n");
+
             switch (scan.next()) {
                 case "0":
                     System.out.println("종료");
                     return;
                 case "1":
                     System.out.println("======= 회원가입 =======");
+                    ctrl.save(scan);
                     System.out.println(ctrl.save(scan));
                     break;
                 case "2":
@@ -48,7 +52,7 @@ public class UserView {
                     System.out.println("======= 회원탈퇴 =======");
                     System.out.println(ctrl.delete(scan));
                     break;
-                case "6":
+                case "ls":
                     System.out.println("======= 회원목록 =======");
                     List<User> users = ctrl.findUsers();
                     users.forEach(i-> System.out.println(i));
@@ -70,8 +74,17 @@ public class UserView {
                     String numberOfUsers = ctrl.count();
                     System.out.println("회원수 "+numberOfUsers);
                     break;
+                case "touch":
+                    System.out.println("======= 테이블생성 =======");
+                    ctrl.createTable();
+                    System.out.println("회원테이블 생성 성공");
+                    break;
+                case "rm":
+                    System.out.println("======= 테이블삭제 =======");
+                    ctrl.deleteTable();
+                    System.out.println("회원테이블 삭제 성공");
+                    break;
             }
         }
-
     }
 }

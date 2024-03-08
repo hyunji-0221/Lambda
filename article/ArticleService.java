@@ -5,5 +5,4 @@ import java.util.List;
 
 public interface ArticleService {
 
-    List<Article> getList() throws SQLException;
 }
