@@ -16,6 +16,7 @@ public class UserRepository {
     }
 
     Connection connection;
+
     private UserRepository() throws SQLException {
         this.connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/adadb"
@@ -35,9 +36,9 @@ public class UserRepository {
     public List<User> findUsers() throws SQLException {
         String sql = "SELECT * FROM board";
         PreparedStatement pstmt = connection.prepareStatement(sql);
-        ResultSet rs =  pstmt.executeQuery();
-        if (rs.next()){
-            do{
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            do {
                 System.out.printf("ID : %d\t Title : %s\t Content : %s\t Writer : %s\n",
                         rs.getInt("id"),
                         rs.getString("title"),
@@ -45,7 +46,7 @@ public class UserRepository {
                         rs.getString("writer"));
             }
             while (rs.next());
-        }else{
+        } else {
             System.out.println("데이터가 없습니다.");
         }
         rs.close();
@@ -55,30 +56,33 @@ public class UserRepository {
         return null;
     }
 
-    public void createTable() throws SQLException {
+    public String createTable() throws SQLException {
         String sql = "CREATE TABLE members(" +
-                                "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                                "username VARCHAR(20) NOT NULL,\n" +
-                                "password VARCHAR(20) NOT NULL,\n" +
-                                "name VARCHAR(20),\n" +
-                                "phone VARCHAR(20),\n" +
-                                "job VARCHAR(20),\n" +
-                                "height VARCHAR(20),\n" +
-                                "weight VARCHAR(20))";
+                "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
+                "username VARCHAR(20) NOT NULL,\n" +
+                "password VARCHAR(20) NOT NULL,\n" +
+                "name VARCHAR(20),\n" +
+                "phone VARCHAR(20),\n" +
+                "job VARCHAR(20),\n" +
+                "height VARCHAR(20),\n" +
+                "weight VARCHAR(20))";
         PreparedStatement pstmt = connection.prepareStatement(sql);
-        pstmt.executeUpdate();
+        int result = pstmt.executeUpdate();
 
         pstmt.close();
         connection.close();
 
+        return (result == 0) ? "Success" : "Fail";
     }
 
-    public void deleteTable() throws SQLException {
-        String sql = "delete table users";
+    public String deleteTable() throws SQLException {
+        String sql = "drop table users";
         PreparedStatement pstmt = connection.prepareStatement(sql);
-        pstmt.executeUpdate();
+        int result = pstmt.executeUpdate();
 
         pstmt.close();
         connection.close();
+
+        return (result == 0) ? "Success" : "Fail";
     }
 }
