@@ -1,5 +1,7 @@
 package com.von.api.user;
 
+import com.von.api.enums.Messenger;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +73,7 @@ public class UserRepository {
         return null;
     }
 
-    public String createTable() throws SQLException {
+    public Messenger createTable() throws SQLException {
         String sql = "CREATE TABLE users(" +
                 "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
                 "username VARCHAR(20) NOT NULL,\n" +
@@ -85,10 +87,10 @@ public class UserRepository {
         int result = pstmt.executeUpdate();
 
 
-        return (result == 0) ? "Success" : "Fail";
+        return (result == 0) ? Messenger.SUCCESS : Messenger.FAIL;
     }
 
-    public String deleteTable() throws SQLException {
+    public Messenger deleteTable() throws SQLException {
         String sql = "drop table users";
         pstmt = connection.prepareStatement(sql);
         int result = pstmt.executeUpdate();
@@ -96,6 +98,6 @@ public class UserRepository {
         pstmt.close();
         connection.close();
 
-        return (result == 0) ? "Success" : "Fail";
+        return (result == 0) ? Messenger.SUCCESS : Messenger.FAIL;
     }
 }
