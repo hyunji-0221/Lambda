@@ -50,36 +50,40 @@ public class UserRepository {
                 ls.add(User.builder()
                         .id(rs.getLong("id"))
                         .userName(rs.getString("userName"))
-                        .password(rs.getString("userName"))
-                        .name(rs.getString("userName"))
-                        .userName(rs.getString("userName"))
+                        .password(rs.getString("password"))
+                        .name(rs.getString("name"))
                         .pNum(rs.getString("pNum"))
                         .job(rs.getString("job"))
                         .height(rs.getDouble("height"))
                         .weight(rs.getDouble("weight"))
                         .build()
                 );
-                System.out.printf("ID : %d\t Title : %s\t Content : %s\t Writer : %s\n",
-                        rs.getInt("id"),
-                        rs.getString("title"),
-                        rs.getString("content"),
-                        rs.getString("writer"));
+//                System.out.printf("ID : %d\t userName : %s\t password : %s\t name : %s\t" +
+//                                " pNum : %s\t job : %s\t height : %s\t weight : %s\n",
+//                        rs.getInt("id"),
+//                        rs.getString("userName"),
+//                        rs.getString("password"),
+//                        rs.getString("name"),
+//                        rs.getString("pNum"),
+//                        rs.getString("job"),
+//                        rs.getString("height"),
+//                        rs.getString("weight"));
             }
             while (rs.next());
         } else {
             System.out.println("데이터가 없습니다.");
         }
 
-        return null;
+        return ls;
     }
 
     public Messenger createTable() throws SQLException {
         String sql = "CREATE TABLE users(" +
                 "id INT AUTO_INCREMENT PRIMARY KEY,\n" +
-                "username VARCHAR(20) NOT NULL,\n" +
+                "userName VARCHAR(20) NOT NULL,\n" +
                 "password VARCHAR(20) NOT NULL,\n" +
                 "name VARCHAR(20),\n" +
-                "phone VARCHAR(20),\n" +
+                "pNum VARCHAR(20),\n" +
                 "job VARCHAR(20),\n" +
                 "height VARCHAR(20),\n" +
                 "weight VARCHAR(20))";
