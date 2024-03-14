@@ -4,92 +4,91 @@ import com.von.api.user.User;
 import com.von.api.user.UserController;
 
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
-public enum UserRouter {
-    EXIT("exit",(a,b)->{
+public enum UserRouterOfPredicate {
+    EXIT("exit",(a)->{
         System.out.println("EXIT");
         return false;
     }),
-    JOIN("join",(a,b)->{
+    JOIN("join",(a)->{
         System.out.println("JOIN");
-        b.save(a);
+        UserController.getInstance().save(a);
         return true;
     }),
-    LOGIN("login",(a,b)->{
+    LOGIN("login",(a)->{
         System.out.println("LOGIN");
-        System.out.println(b.login(a));;
+        System.out.println(UserController.getInstance().login(a));
         return true;
     }),
-    NEWPW("newpw",(a,b)->{
-        System.out.println(b.changePassword(a));
+    NEWPW("newpw",(a)->{
+        System.out.println(UserController.getInstance().changePassword(a));
         return true;
     }),
-    WITHDRAW("wd",(a,b)->{
-        System.out.println(b.delete(a));;
+    WITHDRAW("wd",(a)->{
+        System.out.println(UserController.getInstance().delete(a));;
         return true;
     }),
-    USERLIST("list",(a,b)->{
+    USERLIST("list",(a)->{
         List<User> users = null;
         try {
-            users = b.findUsers();
+            users = UserController.getInstance().findUsers();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         users.forEach(i-> System.out.println(i));
         return true;
     }),
-    SEARCHID("id",(a,b)->{
+    SEARCHID("id",(a)->{
 
         return true;
     }),
-    SEARCHNAME("name",(a,b)->{
+    SEARCHNAME("name",(a)->{
 
         return true;
     }),
-    SEARCHJOB("job",(a,b)->{
+    SEARCHJOB("job",(a)->{
 
         return true;
     }),
-    COUNTUSER("count",(a,b)->{
-        System.out.println(b.count()+"명");
+    COUNTUSER("count",(a)->{
+        System.out.println(UserController.getInstance().count()+"명");
         return true;
     }),
-    TOUCH("touch",(a,b)->{
+    TOUCH("touch",(a)->{
         try {
-            b.createTable();
+            UserController.getInstance().createTable();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return true;
     }),
-    RM("rm",(a,b)->{
+    RM("rm",(a)->{
         try {
-            b.deleteTable();
+            UserController.getInstance().deleteTable();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return true;
     }),
-    ROUTER_ERROR("router_error",(a,b)->{
+    ROUTER_ERROR("router_error",(a)->{
         System.out.println("ROUTER_ERROR");
         return false;
     })
     ;
     private final String name;
-    private final BiPredicate<Scanner,UserController> predicate;
+    private final Predicate<Scanner> predicate;
 
-    UserRouter(String name, BiPredicate<Scanner, UserController> predicate) {
+    UserRouterOfPredicate(String name, Predicate<Scanner> predicate) {
         this.name = name;
         this.predicate = predicate;
     }
 
-    public static Boolean getInput(Scanner scan, UserController ctrl){
+    public static Boolean getInput(Scanner scan){
         System.out.println("[MENU] eixt-EXIT\n" +
                 "join-JOIN\n" +
                 "login-LOGIN\n" +
@@ -105,7 +104,7 @@ public enum UserRouter {
         String str = scan.next();
         return Arrays.stream(values())
                 .filter(i->i.name.equals(str))
-                .findAny().orElse(ROUTER_ERROR).predicate.test(scan,ctrl);
+                .findAny().orElse(ROUTER_ERROR).predicate.test(scan);
     }
 
 }

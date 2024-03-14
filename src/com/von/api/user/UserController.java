@@ -9,9 +9,14 @@ import java.util.Scanner;
 public class UserController {
     UserServiceImpl service;
 
+    private static UserController instance = new UserController();
 
-    public UserController() {
+    private UserController() {
         this.service = UserServiceImpl.getInstance();
+    }
+
+    public static UserController getInstance(){
+        return instance;
     }
 
     public String addUsers() {

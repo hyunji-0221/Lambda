@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-public enum Navigation {
+public enum NavigationOfPredicate {
     EXIT("exit",i->{
         System.out.println("EXIT");
         return false;
@@ -67,7 +67,7 @@ public enum Navigation {
     private final String name;
     private final Predicate<Scanner> predicate;
 
-    Navigation(String name, Predicate<Scanner> predicate) {
+    NavigationOfPredicate(String name, Predicate<Scanner> predicate) {
         this.name = name;
         this.predicate = predicate;
     }
@@ -78,5 +78,9 @@ public enum Navigation {
         return Stream.of(values())
                 .filter(i->i.name.equals(str))
                 .findAny().orElse(NAVIGATION_ERROR).predicate.test(scan);
+    }
+
+    public static boolean select(Scanner scan) {
+        return false;
     }
 }

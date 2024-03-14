@@ -108,14 +108,34 @@ weight int,
 team_id int,
 PRIMARY KEY (id),
 FOREIGN KEY (team_id) REFERENCES team (id)
-);]]></console>
+);
+
+create table menu(
+id int not null auto_increment,
+item varchar(30),
+category varchar(30)
+);
+
+insert into menu(item,category)values('exit-EXit','users');
+insert into menu(item,category)values('join-JOIN','users');
+insert into menu(item,category)values('login-LOGIN','users');
+insert into menu(item,category)values('newpw-CHANGE PASSWORD','users');
+insert into menu(item,category)values('wd-WITHDRAW','users');
+insert into menu(item,category)values('list-USER LIST','users');
+insert into menu(item,category)values('id-SEARCH ID','users');
+insert into menu(item,category)values('name-SEARCH NAME','users');
+insert into menu(item,category)values('job-SEARCH JOB','users');
+insert into menu(item,category)values('touch-CREATE TABLE','users');
+insert into menu(item,category)values('rm-DROP TABLE','users');]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="aa57c60c-8f60-4897-aa09-531caafc02ef" object-ref="consoles/Ada" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="ae784796-74c3-4a19-9b87-e8c31e446255" />
