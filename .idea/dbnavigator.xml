@@ -19,8 +19,118 @@
     <connection id="ae784796-74c3-4a19-9b87-e8c31e446255">
       <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
-    <connection id="b6567dc3-906e-492c-a491-4af03e349027">
-      <console name="adadb" type="STANDARD" schema="" session="Main"><![CDATA[show tables;]]></console>
+    <connection id="aa57c60c-8f60-4897-aa09-531caafc02ef">
+      <console name="Ada" type="STANDARD" schema="" session="Main">show tables;
+
+select distinct category
+from menus;
+
+
+select * from articles;
+
+insert into articles(title, content, writer)
+values ('테스트 제목','테스트 글','노이만');
+
+RENAME TABLE board TO articles;
+
+drop table stadium, team;
+
+CREATE TABLE articles(
+id int AUTO_INCREMENT PRIMARY key,
+title varchar(100),
+content varchar(100),
+writer varchar(100),
+postDate Date
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(20) NOT NULL,
+    password VARCHAR(20) NOT NULL,
+    name VARCHAR(20),
+    phone VARCHAR(20),
+    job VARCHAR(20),
+    height VARCHAR(20),
+    weight VARCHAR(20)
+);
+
+CREATE TABLE stadium(
+id int NOT NULL AUTO_INCREMENT,
+stadium_name varchar(40),
+hometeam_id varchar(10),
+seat_count int,
+address varchar(60),
+ddd varchar(10),
+tel varchar(10),
+PRIMARY KEY(id)
+);
+
+CREATE TABLE team(
+id int NOT NULL AUTO_INCREMENT,
+region_name varchar(10),
+team_name varchar(40),
+e_team_name varchar(50),
+orig_yyyy varchar(10),
+zip_code1 varchar(10),
+zip_code2 varchar(10),
+address varchar(80),
+ddd varchar(10),
+tel varchar(10),
+fax varchar(10),
+homepage varchar(50),
+owner varchar(10),
+stadium_id int,
+PRIMARY KEY(id),
+FOREIGN KEY(stadium_id) REFERENCES stadium (id)
+);
+
+CREATE TABLE schedule(
+id int NOT NULL AUTO_INCREMENT,
+stadium_id int,
+guban varchar(10),
+hometeam_id varchar(10),
+awayteam_id varchar(10),
+home_score int,
+away_score int,
+PRIMARY KEY(id),
+FOREIGN KEY(stadium_id) REFERENCES stadium (id)
+);
+
+CREATE TABLE player(
+id int NOT NULL AUTO_INCREMENT,
+player_name varchar(10),
+e_player_name varchar(10),
+nickname varchar(10),
+join_yyyy varchar(10),
+position varchar(10),
+back_no int,
+nation varchar(10),
+birth_date varchar(10),
+solar varchar(10),
+height int,
+weight int,
+team_id int,
+PRIMARY KEY (id),
+FOREIGN KEY (team_id) REFERENCES team (id)
+);
+
+create table menu(
+id int not null auto_increment,
+item varchar(30),
+category varchar(30)
+);
+
+insert into menu(item,category)values('exit-EXit','users');
+insert into menu(item,category)values('join-JOIN','users');
+insert into menu(item,category)values('login-LOGIN','users');
+insert into menu(item,category)values('newpw-CHANGE PASSWORD','users');
+insert into menu(item,category)values('wd-WITHDRAW','users');
+insert into menu(item,category)values('list-USER LIST','users');
+insert into menu(item,category)values('id-SEARCH ID','users');
+insert into menu(item,category)values('name-SEARCH NAME','users');
+insert into menu(item,category)values('job-SEARCH JOB','users');
+insert into menu(item,category)values('touch-CREATE TABLE','users');
+insert into menu(item,category)values('rm-DROP TABLE','users');</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
@@ -31,18 +141,14 @@
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="ae784796-74c3-4a19-9b87-e8c31e446255" />
-    <connection id="b6567dc3-906e-492c-a491-4af03e349027" />
+    <connection id="aa57c60c-8f60-4897-aa09-531caafc02ef" />
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
-  <component name="DBNavigator.Project.MethodExecutionManager">
-    <method-browser />
-    <execution-history>
-      <group-entries value="true" />
-      <execution-inputs />
-    </execution-history>
-    <argument-values-cache />
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/com/von/api/sql/soccer.sql" connection-id="aa57c60c-8f60-4897-aa09-531caafc02ef" session-id="MAIN" current-schema="adadb" />
+    <mapping file-url="file://$PROJECT_DIR$/src/com/von/api/sql/soccer-test.sql" connection-id="aa57c60c-8f60-4897-aa09-531caafc02ef" session-id="MAIN" current-schema="adadb" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
@@ -147,13 +253,13 @@
           <object-name-filters />
         </object-filters>
       </connection>
-      <connection id="b6567dc3-906e-492c-a491-4af03e349027" active="true" signed="true">
+      <connection id="aa57c60c-8f60-4897-aa09-531caafc02ef" active="true" signed="true">
         <database>
-          <name value="adadb" />
+          <name value="Ada" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="5.5" />
+          <database-version value="8.0" />
           <driver-source value="BUNDLED" />
           <driver-library value="" />
           <driver value="" />
@@ -168,7 +274,7 @@
           <deprecated-pwd value="YWRh" />
         </database>
         <properties>
-          <auto-commit value="false" />
+          <auto-commit value="true" />
         </properties>
         <ssh-settings>
           <active value="false" />
@@ -367,12 +473,18 @@
           <content-type name="DTD" enabled="true" />
           <content-type name="HTML" enabled="true" />
           <content-type name="XHTML" enabled="true" />
+          <content-type name="CSS" enabled="true" />
           <content-type name="Java" enabled="true" />
           <content-type name="SQL" enabled="true" />
           <content-type name="PL/SQL" enabled="true" />
+          <content-type name="JavaScript" enabled="true" />
           <content-type name="JSON" enabled="true" />
           <content-type name="JSON5" enabled="true" />
+          <content-type name="JSP" enabled="true" />
+          <content-type name="JSPx" enabled="true" />
           <content-type name="Groovy" enabled="true" />
+          <content-type name="FTL" enabled="true" />
+          <content-type name="VTL" enabled="true" />
           <content-type name="YAML" enabled="true" />
           <content-type name="Manifest" enabled="true" />
         </content-types>

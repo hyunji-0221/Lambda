@@ -11,8 +11,7 @@ public class UserView {
     public static void main(Scanner scan) throws SQLException {
 //        while (UserRouterOfPredicate.getInput(scan));
 
-        String strFlag = UserRouterOfFunction.select(scan);
-        while(!strFlag.equals("exit"));
+        while(!UserRouterOfFunction.select(scan).equals("exit"));
 
     }
 }
