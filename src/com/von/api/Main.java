@@ -32,6 +32,7 @@ public class Main {
 //        Menu oneMenu = MenuController.getInstance().returnOneMenu();
 //        List<?> allMenu = MenuController.getInstance().returnAllMenus();
 
+        //add
 
 
         String strFlag2 = NavigationOfFunction.select(scan);
