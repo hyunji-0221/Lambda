@@ -68,8 +68,6 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
     }
 
 
-
-
     @Override
     public String login(User user) {
         return users.getOrDefault(user.getUserName(), User.builder().password("").build())

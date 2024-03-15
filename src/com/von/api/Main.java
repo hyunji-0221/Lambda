@@ -35,8 +35,7 @@ public class Main {
         //add
 
 
-        String strFlag2 = NavigationOfFunction.select(scan);
-        while(!strFlag2.equals("x"));
+        while(!NavigationOfFunction.select(scan).equals("x"));
 
     }
 }
