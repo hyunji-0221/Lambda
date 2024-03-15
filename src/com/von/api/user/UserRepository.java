@@ -11,6 +11,8 @@ public class UserRepository {
     private static UserRepository instance;
     private PreparedStatement pstmt;
     private ResultSet rs;
+    Connection connection;
+
 
     static {
         try {
@@ -19,8 +21,6 @@ public class UserRepository {
             throw new RuntimeException(e);
         }
     }
-
-    Connection connection;
 
     private UserRepository() throws SQLException {
         this.connection = DriverManager.getConnection(
@@ -89,7 +89,6 @@ public class UserRepository {
                 "weight VARCHAR(20))";
         pstmt = connection.prepareStatement(sql);
         int result = pstmt.executeUpdate();
-
 
         return (result == 0) ? Messenger.SUCCESS : Messenger.FAIL;
     }

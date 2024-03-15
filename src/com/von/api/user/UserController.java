@@ -114,4 +114,5 @@ public class UserController {
     public void deleteTable() throws SQLException {
         service.deleteTable();
     }
+
 }

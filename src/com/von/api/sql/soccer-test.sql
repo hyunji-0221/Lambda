@@ -298,3 +298,10 @@ where p.height != ''and p.height < avg;
 
 -- 문제 23
 -- 2012년 5월 한달간 경기가 있는 경기장  조회
+
+
+
+show tables;
+desc menus;
+select * from menus;
+select * from menus where category = 'navigate';

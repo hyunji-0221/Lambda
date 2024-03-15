@@ -4,51 +4,58 @@ import com.von.api.account.AccountView;
 import com.von.api.article.ArticleView;
 import com.von.api.board.BoardView;
 import com.von.api.crawler.CrawlerView;
+import com.von.api.menu.Menu;
+import com.von.api.menu.MenuController;
 import com.von.api.user.UserView;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
 public enum NavigationOfFunction {
-    Exit("exit",i->"x"),
-    Crawler("crawler",i-> {
+    Exit("x",i->"x"),
+    Crawler("cwl",i-> {
         try {
-            System.out.println("INc");
             CrawlerView.main(i);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return "";
     }),
-    User("user",i->{
+    User("usr",i->{
         try {
-            System.out.println("INu");
             UserView.main(i);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return "";
     }),
-    Article("article",i-> {
+    Article("art",i-> {
         try {
-            System.out.println("INar");
             ArticleView.main(i);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return "";
     }),
-    Account("account",i-> {
-        System.out.println("INac");
+    Account("acc",i-> {
         AccountView.main(i);
         return "";
     }),
-    Board("board",i-> {
+    Board("bbs",i-> {
         try {
-            System.out.println("INb");
+            BoardView.main(i);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "";
+    }),
+    Soccer("bbs",i-> {
+        try {
             BoardView.main(i);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -67,9 +74,14 @@ public enum NavigationOfFunction {
         this.function = function;
     }
 
-    public static String select(Scanner scan) {
-        System.out.println("exit-종료 \ncrawler-Crawler \nuser-UserView " +
-                "\nboard-Board \naccount-AccountView \narticle-ArticleView");
+    public static String select(Scanner scan) throws SQLException {
+
+        List<?> ls = MenuController.getInstance().returnAllMenus("navigate");
+
+        ls.forEach(System.out::println);
+
+//        System.out.println("exit-종료 \ncrawler-Crawler \nuser-UserView " +
+//                "\nboard-Board \naccount-AccountView \narticle-ArticleView");
         String selectMenu = scan.next();
         System.out.println("선택한 메뉴 : "+selectMenu);
         return Stream.of(values())

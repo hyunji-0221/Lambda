@@ -1,5 +1,6 @@
 package com.von.api.enums;
 
+import com.von.api.menu.MenuController;
 import com.von.api.user.User;
 import com.von.api.user.UserController;
 
@@ -11,15 +12,40 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 public enum UserRouterOfFunction {
-    Exit("exit",a->{
+    Exit("x",a->{
         System.out.println("exit");
         return "exit";
     }),
-    Join("join",a->{
+    MK("mk",a->{
+        System.out.println("make table");
+        try {
+            UserController.getInstance().createTable();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return "";
+    }),
+    Join("joi",a->{
         System.out.println("join");
         return UserController.getInstance().save(a);
     }),
-    UserList("list",a->{
+    LogIn("log",a->{
+        System.out.println("login");
+        return null;
+    }),
+    FindTheOne("cat",a->{
+        System.out.println("Find the One");
+        return null;
+    }),
+    NewPW("ch-pw",a->{
+        System.out.println("Change password");
+        return null;
+    }),
+    Delete("rm",a->{
+        System.out.println("Delete Row");
+        return null;
+    }),
+    UserList("ls-a",a->{
         System.out.println("List");
         try {
            List<User> users = UserController.getInstance().findUsers();
@@ -28,6 +54,18 @@ public enum UserRouterOfFunction {
             throw new RuntimeException(e);
         }
         return "userList";
+    }),
+    UserByName("ls-n",a->{
+        System.out.println("Search with Name");
+        return null;
+    }),
+    UserByJob("ls-j",a->{
+        System.out.println("Search with Job");
+        return null;
+    }),
+    Count("cnt",a->{
+        System.out.println("Count Users");
+        return null;
     }),
     Wrong("router_error",a->{
         System.out.println("WrongAnswer");
@@ -43,19 +81,12 @@ public enum UserRouterOfFunction {
         this.function = function;
     }
 
-    public static String select(Scanner scan) {
-        System.out.println("[MENU] eixt-EXIT\n" +
-                "join-JOIN\n" +
-                "login-LOGIN\n" +
-                "newpw-CHANGE PASSWORD\n" +
-                "wd-WITHDRAW\n" +
-                "list-USER LIST\n" +
-                "id-SEARCH ID\n" +
-                "name-SEARCH NAME\n" +
-                "job-SEARCH JOB\n" +
-                "count-USER COUNT\n" +
-                "touch - CREATE TABLE\n" +
-                "rm - DROP TABLE\n");
+    public static String select(Scanner scan) throws SQLException {
+
+        List<?> ls = MenuController.getInstance().returnAllMenus("user");
+
+        ls.forEach(System.out::println);
+
         String str = scan.next();
         return Stream.of(values())
                 .filter(i->i.name.equals(str))

@@ -22,6 +22,10 @@
     <connection id="aa57c60c-8f60-4897-aa09-531caafc02ef">
       <console name="Ada" type="STANDARD" schema="" session="Main"><![CDATA[show tables;
 
+select distinct category
+from menus;
+
+
 select * from articles;
 
 insert into articles(title, content, writer)
@@ -133,9 +137,7 @@ insert into menu(item,category)values('rm-DROP TABLE','users');]]></console>
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="aa57c60c-8f60-4897-aa09-531caafc02ef" object-ref="consoles/Ada" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="ae784796-74c3-4a19-9b87-e8c31e446255" />
@@ -145,6 +147,7 @@ insert into menu(item,category)values('rm-DROP TABLE','users');]]></console>
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/com/von/api/sql/soccer.sql" connection-id="aa57c60c-8f60-4897-aa09-531caafc02ef" session-id="MAIN" current-schema="adadb" />
     <mapping file-url="file://$PROJECT_DIR$/src/com/von/api/sql/soccer-test.sql" connection-id="aa57c60c-8f60-4897-aa09-531caafc02ef" session-id="MAIN" current-schema="adadb" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">

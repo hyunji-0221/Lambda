@@ -92,12 +92,12 @@ public enum UserRouterOfPredicate {
         System.out.println("[MENU] eixt-EXIT\n" +
                 "join-JOIN\n" +
                 "login-LOGIN\n" +
-                "newpw-CHANGE PASSWORD\n" +
-                "wd-WITHDRAW\n" +
+                "newPw-CHANGE PASSWORD\n" +
+                "delete-WITHDRAW\n" +
                 "list-USER LIST\n" +
                 "id-SEARCH ID\n" +
-                "name-SEARCH NAME\n" +
-                "job-SEARCH JOB\n" +
+                "searchName-SEARCH NAME\n" +
+                "searchJob-SEARCH JOB\n" +
                 "count-USER COUNT\n" +
                 "touch - CREATE TABLE\n" +
                 "rm - DROP TABLE\n");

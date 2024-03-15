@@ -11,10 +11,12 @@ public class Menu {
     private String item;
     private String category;
 
-    @Builder(builderMethodName = "build")
+    @Builder(builderMethodName = "builder")
     public Menu(Long id, String item, String category) {
         this.id = id;
         this.item = item;
         this.category = category;
     }
+
+
 }
