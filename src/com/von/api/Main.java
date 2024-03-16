@@ -22,7 +22,7 @@ public class Main {
 //        boolean booleanFlag = NavigationOfPredicate.select(scan);
 //        while(booleanFlag);
 
-//        String strFlag = NavigationOfSupplier.select(scan);
+//        String  strFlag = NavigationOfSupplier.select(scan);
 //        while(strFlag.equals("x"));
 
 /**

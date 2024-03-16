@@ -39,6 +39,7 @@ public enum UserRouterOfFunction {
     }),
     NewPW("ch-pw",a->{
         System.out.println("Change password");
+        UserController.getInstance().changePassword();
         return null;
     }),
     Delete("rm",a->{
@@ -65,6 +66,7 @@ public enum UserRouterOfFunction {
     }),
     Count("cnt",a->{
         System.out.println("Count Users");
+
         return null;
     }),
     Wrong("router_error",a->{

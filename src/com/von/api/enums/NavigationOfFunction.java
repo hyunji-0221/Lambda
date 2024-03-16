@@ -18,6 +18,11 @@ import java.util.stream.Stream;
 
 public enum NavigationOfFunction {
     Exit("x",i->"x"),
+    MK("mk",i->{
+        System.out.println("Make Menu Table");
+        MenuController.getInstance().makeMenuTable();
+        return "";
+    }),
     Crawler("cwl",i-> {
         try {
             CrawlerView.main(i);
@@ -54,15 +59,12 @@ public enum NavigationOfFunction {
         }
         return "";
     }),
-    Soccer("bbs",i-> {
-        try {
-            BoardView.main(i);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return "";
+    Soccer("scc",i-> {
+        System.out.println("Soccer View");
+        return null;
     }),
     Error("nav_error",i->{
+        System.out.println("Wrong Input");
         return "nav_error";
     });
 
@@ -80,8 +82,6 @@ public enum NavigationOfFunction {
 
         ls.forEach(System.out::println);
 
-//        System.out.println("exit-종료 \ncrawler-Crawler \nuser-UserView " +
-//                "\nboard-Board \naccount-AccountView \narticle-ArticleView");
         String selectMenu = scan.next();
         System.out.println("선택한 메뉴 : "+selectMenu);
         return Stream.of(values())
