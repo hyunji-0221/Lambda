@@ -25,8 +25,8 @@ public class UserRepository {
     private UserRepository() throws SQLException {
         this.connection = DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/adadb"
-                , "root"
-                , "rootroot");
+                , "ada"
+                , "ada");
         pstmt = null;
         rs = null;
     }

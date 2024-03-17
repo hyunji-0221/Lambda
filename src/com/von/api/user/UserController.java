@@ -40,7 +40,7 @@ public class UserController {
     }
 
     public String changePassword(Scanner scanner) {
-        
+
         return service.changePassword(User.builder()
                 .userName(scanner.next())
                 .pNum(scanner.next())
